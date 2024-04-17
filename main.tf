@@ -2,20 +2,6 @@ locals {
   subnet_names = [for subnet_self_link in module.gcp-network.subnets_self_links : split("/", subnet_self_link)[length(split("/", subnet_self_link)) - 1]]
 }
 
-
-module "project-services" {
-  source  = "terraform-google-modules/project-factory/google//modules/project_services"
-  version = "~> 14.5"
-
-  project_id = var.project_id
-
-  activate_apis = flatten([[
-    "compute.googleapis.com","container.googleapis.com"
-    ], var.gcp_activate_apis
-  ])
-}
-
-
 module "gcp-network" {
   source  = "terraform-google-modules/network/google"
   version = ">= 7.5"
