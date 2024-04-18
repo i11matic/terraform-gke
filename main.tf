@@ -36,6 +36,32 @@ module "gcp-network" {
   }
 }
 
+resource "google_compute_router" "router" {
+  name    = var.router_name
+  project = var.project_id
+  region  = var.region
+  network = module.gcp-network.network_id
+
+  bgp {
+    asn = 64514
+  }
+}
+
+resource "google_compute_router_nat" "nat" {
+  name                               = "${var.router_name}-nat"
+  project                            = var.project_id
+  router                             = google_compute_router.router.name
+  region                             = google_compute_router.router.region
+  nat_ip_allocate_option             = "AUTO_ONLY"
+  source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
+
+  log_config {
+    enable = true
+    filter = "ERRORS_ONLY"
+  }
+}
+
+
 module "gke" {
   source  = "terraform-google-modules/kubernetes-engine/google//modules/safer-cluster"
   version = "~> 30.0"

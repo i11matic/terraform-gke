@@ -8,6 +8,11 @@ variable "region" {
   description = "The region to host the cluster in"
 }
 
+variable "router_name" {
+  type        = string
+  description = "Name for the router and nat gateway"
+}
+
 variable "gcp_activate_apis" {
   type        = list(string)
   description = "list of services to enable"

@@ -2,6 +2,8 @@ project_id = "gke-test-420601"
 
 region = "northamerica-northeast1"
 
+router_name = "gke-router"
+
 gke_network_name = "gke-test"
 
 gke_subnetwork = {
