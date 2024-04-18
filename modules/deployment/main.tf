@@ -1,13 +1,3 @@
-resource "kubernetes_namespace" "this" {
-  metadata {
-    annotations = var.k8_deployment.annotations
-
-    labels = var.k8_deployment.labels
-
-    name = var.k8_deployment.namespace
-  }
-}
-
 resource "kubernetes_deployment" "this" {
   metadata {
     name      = var.k8_deployment.name

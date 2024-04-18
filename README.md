@@ -13,6 +13,7 @@
 | Name | Version |
 |------|---------|
 | <a name="provider_google"></a> [google](#provider\_google) | 5.25.0 |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.29.0 |
 
 ## Modules
 
@@ -29,12 +30,14 @@
 | [google_compute_router.router](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_router) | resource |
 | [google_compute_router_nat.nat](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_router_nat) | resource |
 | [google_pubsub_topic.updates](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic) | resource |
+| [kubernetes_namespace.namespace](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
 | [google_client_config.default](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/client_config) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_authorized_networks"></a> [authorized\_networks](#input\_authorized\_networks) | list of network objects that will have access to the master api | <pre>list(object({<br>    cidr_block   = string<br>    display_name = string<br>  }))</pre> | `[]` | no |
 | <a name="input_gcp_activate_apis"></a> [gcp\_activate\_apis](#input\_gcp\_activate\_apis) | list of services to enable | `list(string)` | `[]` | no |
 | <a name="input_gke_cluster_name"></a> [gke\_cluster\_name](#input\_gke\_cluster\_name) | name of the gke cluster | `string` | n/a | yes |
 | <a name="input_gke_deletion_protection"></a> [gke\_deletion\_protection](#input\_gke\_deletion\_protection) | enable delete protection | `bool` | `false` | no |
@@ -47,6 +50,7 @@
 | <a name="input_gke_subnetwork"></a> [gke\_subnetwork](#input\_gke\_subnetwork) | Configuration for  gke subnetwork | <pre>object({<br>    name = string<br>    cidr = string<br>  })</pre> | n/a | yes |
 | <a name="input_gke_svc_range"></a> [gke\_svc\_range](#input\_gke\_svc\_range) | Configuration of the gke svc range | <pre>object({<br>    name = string<br>    cidr = string<br>  })</pre> | n/a | yes |
 | <a name="input_k8_deployments"></a> [k8\_deployments](#input\_k8\_deployments) | map of k8 deployment objects | <pre>map(object({<br>    namespace    = string<br>    labels       = map(string)<br>    annotations  = map(string)<br>    name         = string<br>    replicas     = number<br>    match_labels = map(string)<br>    env          = map(string)<br>    image_name   = string<br>    limits = object({<br>      cpu    = string<br>      memory = string<br>    })<br>    requests = object({<br>      cpu    = string<br>      memory = string<br>    })<br>    health_check = object({<br>      path                  = string<br>      port                  = number<br>      initial_delay_seconds = number<br>      period_seconds        = number<br>    })<br>  }))</pre> | `{}` | no |
+| <a name="input_k8_namespaces"></a> [k8\_namespaces](#input\_k8\_namespaces) | map of namespace objects | <pre>map(object({<br>    labels      = map(string)<br>    annotations = map(string)<br>  }))</pre> | `{}` | no |
 | <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | kuberentes version | `string` | `"latest"` | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | The project ID to host the cluster in | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | The region to host the cluster in | `string` | n/a | yes |

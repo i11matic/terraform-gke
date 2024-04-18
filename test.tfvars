@@ -70,3 +70,16 @@ k8_deployments = {
     }
   }
 }
+
+
+k8s_namespaces = {
+  foobar = {
+    labels = {
+      test = "bar"
+    }
+    annotations = {
+      name = "value"
+    }
+  }
+
+}

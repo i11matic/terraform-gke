@@ -13,6 +13,15 @@ variable "router_name" {
   description = "Name for the router and nat gateway"
 }
 
+variable "authorized_networks" {
+  type = list(object({
+    cidr_block   = string
+    display_name = string
+  }))
+  default     = []
+  description = "list of network objects that will have access to the master api"
+}
+
 variable "gcp_activate_apis" {
   type        = list(string)
   description = "list of services to enable"
@@ -91,33 +100,6 @@ variable "gke_deletion_protection" {
   description = "enable delete protection"
   default     = false
 }
-/* 
-variable "k8_deployment" {
-  type = object({
-    namespace    = string
-    labels       = map(string)
-    annotations  = map(string)
-    name         = string
-    replicas     = number
-    match_labels = map(string)
-    env          = map(string)
-    image_name   = string
-    limits = object({
-      cpu    = string
-      memory = string
-    })
-    requests = object({
-      cpu    = string
-      memory = string
-    })
-    health_check = object({
-      path                  = string
-      port                  = number
-      initial_delay_seconds = number
-      period_seconds        = number
-    })
-  })
-} */
 
 variable "k8_deployments" {
   type = map(object({
@@ -146,4 +128,13 @@ variable "k8_deployments" {
   }))
   description = "map of k8 deployment objects"
   default     = {}
+}
+
+variable "k8_namespaces" {
+  type = map(object({
+    labels      = map(string)
+    annotations = map(string)
+  }))
+  default     = {}
+  description = "map of namespace objects"
 }
