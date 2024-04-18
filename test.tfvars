@@ -72,7 +72,7 @@ k8_deployments = {
 }
 
 
-k8s_namespaces = {
+k8_namespaces = {
   foobar = {
     labels = {
       test = "bar"
