@@ -100,6 +100,7 @@ variable "k8_deployment" {
     name         = string
     replicas     = number
     match_labels = map(string)
+    env          = map(string)
     image_name   = string
     limits = object({
       cpu    = string

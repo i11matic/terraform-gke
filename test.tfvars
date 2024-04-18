@@ -42,10 +42,16 @@ k8_deployment = {
   annotations = {
     name = "value"
   }
-  name         = "test-deployment"
-  replicas     = 1
-  match_labels = {}
-  image_name   = "nginx:1.21.6"
+  name     = "test-deployment"
+  replicas = 1
+  match_labels = {
+    test = "test"
+  }
+  env = {
+    foobar : "baz"
+    yolo : "fire"
+  }
+  image_name = "nginx:1.21.6"
   limits = {
     cpu    = "0.5"
     memory = "512Mi"

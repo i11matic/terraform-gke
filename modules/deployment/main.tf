@@ -8,10 +8,10 @@ resource "kubernetes_namespace" "this" {
   }
 }
 
-resource "kubernetes_deployment" "example" {
+resource "kubernetes_deployment" "this" {
   metadata {
-    name   = var.k8_deployment.name
-    labels = var.k8_deployment.labels
+    name      = var.k8_deployment.name
+    labels    = var.k8_deployment.labels
     namespace = var.k8_deployment.namespace
   }
 
@@ -24,7 +24,7 @@ resource "kubernetes_deployment" "example" {
 
     template {
       metadata {
-        labels = var.k8_deployment.labels
+        labels = var.k8_deployment.match_labels
       }
 
       spec {
@@ -42,7 +42,14 @@ resource "kubernetes_deployment" "example" {
               memory = var.k8_deployment.requests.memory
             }
           }
-
+          dynamic "env" {
+            for_each = var.k8_deployment.env
+            iterator = item
+            content {
+              name  = item.key
+              value = item.value
+            }
+          }
           liveness_probe {
             http_get {
               path = var.k8_deployment.health_check.path
