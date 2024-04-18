@@ -12,6 +12,7 @@ resource "kubernetes_deployment" "example" {
   metadata {
     name   = var.k8_deployment.name
     labels = var.k8_deployment.labels
+    namespace = var.k8_deployment.namespace
   }
 
   spec {
