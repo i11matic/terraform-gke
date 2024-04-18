@@ -94,3 +94,16 @@ resource "google_pubsub_topic" "updates" {
   name    = "cluster-updates-${var.gke_cluster_name}"
   project = var.project_id
 }
+
+data "google_client_config" "default" {}
+
+provider "kubernetes" {
+  host                   = "https://${module.gke.endpoint}"
+  token                  = data.google_client_config.default.access_token
+  cluster_ca_certificate = base64decode(module.gke.ca_certificate)
+}
+
+module "k8s-deployment" {
+  source        = "./modules/deployment"
+  k8_deployment = var.k8_deployment
+}

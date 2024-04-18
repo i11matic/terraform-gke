@@ -33,3 +33,31 @@ gke_cluster_name = "gke-test"
 gke_regional_deployment = true
 
 gke_master_ipv4_cidr_block = "172.16.0.0/28"
+
+k8_deployment = {
+  namespace = "foobar"
+  labels = {
+    test = "bar"
+  }
+  annotations = {
+    name = "value"
+  }
+  name         = "test-deployment"
+  replicas     = 1
+  match_labels = {}
+  image_name   = "nginx:1.21.6"
+  limits = {
+    cpu    = "0.5"
+    memory = "512Mi"
+  }
+  requests = {
+    cpu    = "250m"
+    memory = "50Mi"
+  }
+  health_check = {
+    path                  = "/"
+    port                  = 80
+    initial_delay_seconds = 3
+    period_seconds        = 3
+  }
+}
