@@ -105,5 +105,6 @@ provider "kubernetes" {
 
 module "k8s-deployment" {
   source        = "./modules/deployment"
-  k8_deployment = var.k8_deployment
+  for_each      = var.k8_deployments
+  k8_deployment = each.value
 }
