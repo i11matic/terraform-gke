@@ -83,3 +83,10 @@ k8_namespaces = {
   }
 
 }
+
+
+sql_instance_name = "test-sql"
+
+random_instance_name = true
+
+sql_private_ip_alloc = "10.10.0.0"

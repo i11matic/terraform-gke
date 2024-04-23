@@ -138,3 +138,54 @@ variable "k8_namespaces" {
   default     = {}
   description = "map of namespace objects"
 }
+
+variable "sql_instance_name" {
+  type        = string
+  description = "name of the sql instance"
+  default     = ""
+
+}
+
+variable "sql_server_audit_config" {
+  description = "SQL server audit config settings."
+  type        = map(string)
+  default     = {}
+}
+
+
+variable "random_instance_name" {
+  type        = bool
+  description = "enable random instance name"
+  default     = false
+
+}
+
+variable "database_version" {
+  type        = string
+  description = "database version for ms sql"
+  default     = "SQLSERVER_2022_STANDARD"
+}
+
+variable "sql_deletion_protection" {
+  type        = bool
+  description = "enable delete protection"
+  default     = false
+}
+
+variable "sql_tier" {
+  type        = string
+  description = "tier for the sql instance"
+  default     = "db-custom-10-65536"
+}
+
+variable "sql_private_ip_alloc" {
+  type        = string
+  description = "private network address"
+  default     = ""
+}
+
+variable "sql_private_network_id" {
+  type        = string
+  description = "private network id"
+  default     = ""
+}

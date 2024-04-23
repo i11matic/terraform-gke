@@ -22,6 +22,7 @@
 | <a name="module_gcp-network"></a> [gcp-network](#module\_gcp-network) | terraform-google-modules/network/google | >= 7.5 |
 | <a name="module_gke"></a> [gke](#module\_gke) | terraform-google-modules/kubernetes-engine/google//modules/safer-cluster | ~> 30.0 |
 | <a name="module_k8s-deployment"></a> [k8s-deployment](#module\_k8s-deployment) | ./modules/deployment | n/a |
+| <a name="module_sql"></a> [sql](#module\_sql) | ./modules/sql | n/a |
 
 ## Resources
 
@@ -38,6 +39,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_authorized_networks"></a> [authorized\_networks](#input\_authorized\_networks) | list of network objects that will have access to the master api | <pre>list(object({<br>    cidr_block   = string<br>    display_name = string<br>  }))</pre> | `[]` | no |
+| <a name="input_database_version"></a> [database\_version](#input\_database\_version) | database version for ms sql | `string` | `"SQLSERVER_2022_STANDARD"` | no |
 | <a name="input_gcp_activate_apis"></a> [gcp\_activate\_apis](#input\_gcp\_activate\_apis) | list of services to enable | `list(string)` | `[]` | no |
 | <a name="input_gke_cluster_name"></a> [gke\_cluster\_name](#input\_gke\_cluster\_name) | name of the gke cluster | `string` | n/a | yes |
 | <a name="input_gke_deletion_protection"></a> [gke\_deletion\_protection](#input\_gke\_deletion\_protection) | enable delete protection | `bool` | `false` | no |
@@ -53,8 +55,15 @@
 | <a name="input_k8_namespaces"></a> [k8\_namespaces](#input\_k8\_namespaces) | map of namespace objects | <pre>map(object({<br>    labels      = map(string)<br>    annotations = map(string)<br>  }))</pre> | `{}` | no |
 | <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | kuberentes version | `string` | `"latest"` | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | The project ID to host the cluster in | `string` | n/a | yes |
+| <a name="input_random_instance_name"></a> [random\_instance\_name](#input\_random\_instance\_name) | enable random instance name | `bool` | `false` | no |
 | <a name="input_region"></a> [region](#input\_region) | The region to host the cluster in | `string` | n/a | yes |
 | <a name="input_router_name"></a> [router\_name](#input\_router\_name) | Name for the router and nat gateway | `string` | n/a | yes |
+| <a name="input_sql_deletion_protection"></a> [sql\_deletion\_protection](#input\_sql\_deletion\_protection) | enable delete protection | `bool` | `false` | no |
+| <a name="input_sql_instance_name"></a> [sql\_instance\_name](#input\_sql\_instance\_name) | name of the sql instance | `string` | `""` | no |
+| <a name="input_sql_private_ip_alloc"></a> [sql\_private\_ip\_alloc](#input\_sql\_private\_ip\_alloc) | private network address | `string` | `""` | no |
+| <a name="input_sql_private_network_id"></a> [sql\_private\_network\_id](#input\_sql\_private\_network\_id) | private network id | `string` | `""` | no |
+| <a name="input_sql_server_audit_config"></a> [sql\_server\_audit\_config](#input\_sql\_server\_audit\_config) | SQL server audit config settings. | `map(string)` | `{}` | no |
+| <a name="input_sql_tier"></a> [sql\_tier](#input\_sql\_tier) | tier for the sql instance | `string` | `"db-custom-10-65536"` | no |
 
 ## Outputs
 
