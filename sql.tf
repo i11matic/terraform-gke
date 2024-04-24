@@ -1,5 +1,6 @@
 module "sql" {
   source                  = "./modules/sql"
+  for_each                = var.sql_enabled ? toset(["enabled"]) : []
   project_id              = var.project_id
   region                  = var.region
   sql_instance_name       = var.sql_instance_name

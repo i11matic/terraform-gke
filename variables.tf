@@ -139,6 +139,12 @@ variable "k8_namespaces" {
   description = "map of namespace objects"
 }
 
+variable "sql_enabled" {
+  type        = bool
+  description = "enable sql deployment"
+  default     = false
+}
+
 variable "sql_instance_name" {
   type        = string
   description = "name of the sql instance"

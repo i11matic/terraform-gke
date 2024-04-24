@@ -59,6 +59,7 @@
 | <a name="input_region"></a> [region](#input\_region) | The region to host the cluster in | `string` | n/a | yes |
 | <a name="input_router_name"></a> [router\_name](#input\_router\_name) | Name for the router and nat gateway | `string` | n/a | yes |
 | <a name="input_sql_deletion_protection"></a> [sql\_deletion\_protection](#input\_sql\_deletion\_protection) | enable delete protection | `bool` | `false` | no |
+| <a name="input_sql_enabled"></a> [sql\_enabled](#input\_sql\_enabled) | enable sql deployment | `bool` | `false` | no |
 | <a name="input_sql_instance_name"></a> [sql\_instance\_name](#input\_sql\_instance\_name) | name of the sql instance | `string` | `""` | no |
 | <a name="input_sql_private_ip_alloc"></a> [sql\_private\_ip\_alloc](#input\_sql\_private\_ip\_alloc) | private network address | `string` | `""` | no |
 | <a name="input_sql_private_network_id"></a> [sql\_private\_network\_id](#input\_sql\_private\_network\_id) | private network id | `string` | `""` | no |

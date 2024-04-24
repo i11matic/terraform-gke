@@ -85,6 +85,8 @@ k8_namespaces = {
 }
 
 
+sql_enabled = true
+
 sql_instance_name = "test-sql"
 
 random_instance_name = true
