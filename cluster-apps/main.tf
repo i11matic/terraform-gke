@@ -44,6 +44,6 @@ data "kubectl_file_documents" "cloud_sql_proxy" {
 }
 
 resource "kubectl_manifest" "cloud_sql_proxy" {
-  for_each  = data.kubectl_file_documents.docs.manifests
+  for_each  = data.kubectl_file_documents.cloud_sql_proxy.manifests
   yaml_body = each.value
 }
