@@ -15,7 +15,7 @@ k8_namespaces = {
   }
 }
 
-k8-workload-identity = {
+k8_workload_identity = {
   service_account_name = "app-test"
   namespace            = "foobar"
   roles                = ["roles/cloudsql.client"]
