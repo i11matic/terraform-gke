@@ -1,9 +1,17 @@
 data "google_client_config" "default" {}
 
+
+data "google_container_cluster" "cluster" {
+  project = var.project_id
+  name    = var.gke_cluster_name
+}
+
 provider "kubernetes" {
-  host                   = "https://${module.gke.endpoint}"
-  token                  = data.google_client_config.default.access_token
-  cluster_ca_certificate = base64decode(module.gke.ca_certificate)
+  host  = "https://${data.google_container_cluster.cluster.endpoint}"
+  token = data.google_client_config.provider.access_token
+  cluster_ca_certificate = base64decode(
+    data.google_container_cluster.cluster.master_auth[0].cluster_ca_certificate
+  )
 }
 
 resource "kubernetes_namespace" "namespace" {
@@ -24,7 +32,7 @@ module "k8-workload-identity" {
   namespace    = each.value.namespace
   project_id   = var.project_id
   roles        = each.value.roles
-  depends_on = [kubernetes_namespace.namespace]
+  depends_on   = [kubernetes_namespace.namespace]
 }
 
 
