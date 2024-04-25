@@ -1,9 +1,9 @@
-data "google_client_config" "default" {}
-
+data "google_client_config" "provider" {}
 
 data "google_container_cluster" "cluster" {
-  project = var.project_id
-  name    = var.gke_cluster_name
+  project  = var.project_id
+  name     = var.gke_cluster_name
+  location = var.region
 }
 
 provider "kubernetes" {
