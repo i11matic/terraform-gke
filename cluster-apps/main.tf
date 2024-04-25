@@ -1,8 +1,9 @@
 data "google_client_config" "provider" {}
 
 data "google_container_cluster" "cluster" {
+  project  = var.project_id
   name     = var.gke_cluster_name
-  location = "var.region"
+  location = var.region
 }
 
 provider "helm" {
@@ -34,11 +35,15 @@ resource "helm_release" "cert_manager" {
 }
 
 
-data "http" "cloudSqlYaml" {
+data "http" "cloud_sql_proxy" {
   url = "https://storage.googleapis.com/cloud-sql-connectors/cloud-sql-proxy-operator/v1.4.5/cloud-sql-proxy-operator.yaml"
 }
 
-resource "kubectl_manifest" "test" {
-  yaml_body  = data.http.cloudSqlYaml.body
-  depends_on = [helm_release.cert_manager]
+data "kubectl_file_documents" "cloud_sql_proxy" {
+  content = data.http.cloud_sql_proxy.response_body
+}
+
+resource "kubectl_manifest" "cloud_sql_proxy" {
+  for_each  = data.kubectl_file_documents.docs.manifests
+  yaml_body = each.value
 }
