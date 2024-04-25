@@ -1,3 +1,26 @@
+project_id = "gke-test-420601"
+
+region = "northamerica-northeast1"
+
+gke_cluster_name = "gke-test"
+
+k8_namespaces = {
+  foobar = {
+    labels = {
+      test = "bar"
+    }
+    annotations = {
+      name = "value"
+    }
+  }
+}
+
+k8-workload-identity = {
+  service_account_name = "app-test"
+  namespace            = "foobar"
+  roles                = ["roles/cloudsql.client"]
+}
+
 # k8_deployments = {
 #   nginx = {
 #     namespace = "foobar"
@@ -33,21 +56,3 @@
 #     }
 #   }
 # } 
-
-
-k8_namespaces = {
-  foobar = {
-    labels = {
-      test = "bar"
-    }
-    annotations = {
-      name = "value"
-    }
-  }
-}
-
-k8-workload-identity = {
-  service_account_name = "app-test"
-  namespace            = "foobar"
-  roles                = ["roles/cloudsql.client"]
-}

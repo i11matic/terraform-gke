@@ -24,6 +24,7 @@ module "k8-workload-identity" {
   namespace    = each.value.namespace
   project_id   = var.project_id
   roles        = each.value.roles
+  depends_on = [kubernetes_namespace.namespace]
 }
 
 
