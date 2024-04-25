@@ -22,7 +22,7 @@ resource "helm_release" "cert_manager" {
   repository       = "https://charts.jetstack.io"
   create_namespace = true
   namespace        = "cert-manager"
-  chart            = "jetstack/cert-manager"
+  chart            = "cert-manager"
 
   set {
     name  = "global.leaderElection.namespace"
