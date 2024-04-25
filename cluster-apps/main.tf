@@ -16,12 +16,14 @@ resource "kubernetes_namespace" "namespace" {
 }
 
 module "k8-workload-identity" {
-  source     = "terraform-google-modules/kubernetes-engine/google//modules/workload-identity"
-  for_each   = var.k8_workload_identities
-  name       = each.value.service_account_name
-  namespace  = each.value.namespace
-  project_id = var.project_id
-  roles      = each.value.roles
+  source       = "terraform-google-modules/kubernetes-engine/google//modules/workload-identity"
+  for_each     = var.k8_workload_identities
+  cluster_name = var.gke_cluster_name
+  location     = var.region
+  name         = each.value.service_account_name
+  namespace    = each.value.namespace
+  project_id   = var.project_id
+  roles        = each.value.roles
 }
 
 
