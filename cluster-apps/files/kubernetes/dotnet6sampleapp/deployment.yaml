@@ -12,6 +12,8 @@ spec:
   - connectionString: "gke-test-420601:northamerica-northeast1:test-sql-c37ccd50"
     portEnvName: "DB_PORT"
     hostEnvName: "INSTANCE_HOST"
+    privateIP: true
+    port: 5000
 ---
 apiVersion: apps/v1
 kind: Deployment
