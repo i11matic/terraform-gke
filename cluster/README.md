@@ -45,6 +45,7 @@
 | <a name="input_gke_master_auth_subnetwork"></a> [gke\_master\_auth\_subnetwork](#input\_gke\_master\_auth\_subnetwork) | Configuration of gke master authorized network | <pre>object({<br>    name = string<br>    cidr = string<br>  })</pre> | n/a | yes |
 | <a name="input_gke_master_ipv4_cidr_block"></a> [gke\_master\_ipv4\_cidr\_block](#input\_gke\_master\_ipv4\_cidr\_block) | cidr block for the master k8s api | `string` | n/a | yes |
 | <a name="input_gke_network_name"></a> [gke\_network\_name](#input\_gke\_network\_name) | Name of the network | `string` | n/a | yes |
+| <a name="input_gke_node_pools"></a> [gke\_node\_pools](#input\_gke\_node\_pools) | List of maps containing node pools | `list(map(string))` | <pre>[<br>  {<br>    "name": "default-node-pool"<br>  }<br>]</pre> | no |
 | <a name="input_gke_pod_range"></a> [gke\_pod\_range](#input\_gke\_pod\_range) | Configuration of the gke pod range | <pre>object({<br>    name = string<br>    cidr = string<br>  })</pre> | n/a | yes |
 | <a name="input_gke_regional_deployment"></a> [gke\_regional\_deployment](#input\_gke\_regional\_deployment) | enable regional | `bool` | `true` | no |
 | <a name="input_gke_subnetwork"></a> [gke\_subnetwork](#input\_gke\_subnetwork) | Configuration for  gke subnetwork | <pre>object({<br>    name = string<br>    cidr = string<br>  })</pre> | n/a | yes |

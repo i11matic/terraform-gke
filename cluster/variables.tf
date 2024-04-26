@@ -89,6 +89,17 @@ variable "gke_firewall_inbound_ports" {
   default     = []
 }
 
+variable "gke_node_pools" {
+  type        = list(map(string))
+  description = "List of maps containing node pools"
+
+  default = [
+    {
+      name = "default-node-pool"
+    },
+  ]
+}
+
 variable "kubernetes_version" {
   type        = string
   description = "kuberentes version"

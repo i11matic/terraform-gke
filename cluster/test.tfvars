@@ -34,6 +34,18 @@ gke_regional_deployment = true
 
 gke_master_ipv4_cidr_block = "172.16.0.0/28"
 
+gke_node_pools = [
+  {
+    name         = "pool-01"
+    min_count    = 1
+    max_count    = 2
+    machine_type = "n1-standard-2"
+    disk_size_gb = 30
+    disk_type    = "pd-standard"
+    auto_upgrade = true
+  }
+]
+
 sql_enabled = true
 
 sql_instance_name = "test-sql"

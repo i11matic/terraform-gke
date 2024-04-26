@@ -20,6 +20,7 @@ module "gke" {
   kubernetes_version         = var.kubernetes_version
   deletion_protection        = var.gke_deletion_protection
 
+  node_pools = var.gke_node_pools
   master_authorized_networks = flatten([[
     {
       cidr_block   = var.gke_master_auth_subnetwork.cidr
