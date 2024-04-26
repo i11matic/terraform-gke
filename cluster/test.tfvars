@@ -41,3 +41,5 @@ sql_instance_name = "test-sql"
 random_instance_name = true
 
 sql_private_ip_alloc = "10.92.0.0"
+
+artifact_registry_name = "gke-test-reg"

@@ -157,3 +157,9 @@ variable "sql_private_network_id" {
   description = "private network id"
   default     = ""
 }
+
+variable "artifact_registry_name" {
+  type        = string
+  description = "name of the artifact registry"
+  default     = ""
+}

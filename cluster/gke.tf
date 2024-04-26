@@ -37,3 +37,12 @@ resource "google_pubsub_topic" "updates" {
   project = var.project_id
 }
 
+module "artifact_registry" {
+  source        = "GoogleCloudPlatform/artifact-registry/google"
+  version       = "~> 0.1"
+  count         = length(var.artifact_registry_name) >= 1 ? 1 : 0
+  project_id    = var.project_id
+  location      = var.region
+  format        = "DOCKER"
+  repository_id = var.artifact_registry_name
+}
