@@ -60,3 +60,9 @@ variable "k8_workload_identities" {
   }))
   default = {}
 }
+
+variable "k8_deployment_yamls" {
+  type        = list(string)
+  description = "list of filenames for k8s deployments"
+  default     = []
+}

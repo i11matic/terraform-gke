@@ -23,6 +23,9 @@ k8_workload_identities = {
   }
 }
 
+k8_deployment_yamls = [
+  "./files/kubernetes/dotnet6sampleapp/deployment.yaml"
+]
 
 # k8_deployments = {
 #   nginx = {

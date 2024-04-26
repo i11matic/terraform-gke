@@ -1,0 +1,45 @@
+---
+apiVersion: cloudsql.cloud.google.com/v1
+kind: AuthProxyWorkload
+metadata:
+  name: authproxyworkload-dotnet6sample
+  namespace: foobar
+spec:
+  workloadSelector:
+    kind: "Deployment"
+    name: "dotnet6sample-deployment"
+  instances:
+  - connectionString: "gke-test-420601:northamerica-northeast1:test-sql-c37ccd50"
+    portEnvName: "DB_PORT"
+    hostEnvName: "INSTANCE_HOST"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dotnet6sample-deployment
+  namespace: foobar
+  labels:
+    app: dotnet6sample
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dotnet6sample
+  template:
+    metadata:
+      labels:
+        app: dotnet6sample
+    spec:
+      serviceAccountName: app-test
+      containers:
+      - name: dotnet6sample
+        image: northamerica-northeast1-docker.pkg.dev/gke-test-420601/gke-test-reg/dotnet6sample:latest
+        ports:
+        - containerPort: 4000
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"

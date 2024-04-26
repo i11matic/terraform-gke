@@ -41,3 +41,10 @@ module "k8s-deployment" {
   for_each      = var.k8_deployments
   k8_deployment = each.value
 }
+
+
+module "k8-deployment-v2" {
+  source             = "./modules/deployment_v2"
+  for_each           = toset(var.k8_deployment_yamls)
+  k8_deployment_yaml = each.value
+}
