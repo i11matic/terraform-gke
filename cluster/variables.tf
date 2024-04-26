@@ -89,6 +89,17 @@ variable "gke_firewall_inbound_ports" {
   default     = []
 }
 
+variable "gke_node_pools" {
+  type        = list(map(string))
+  description = "List of maps containing node pools"
+
+  default = [
+    {
+      name = "default-node-pool"
+    },
+  ]
+}
+
 variable "kubernetes_version" {
   type        = string
   description = "kuberentes version"
@@ -101,40 +112,65 @@ variable "gke_deletion_protection" {
   default     = false
 }
 
-variable "k8_deployments" {
-  type = map(object({
-    namespace    = string
-    labels       = map(string)
-    annotations  = map(string)
-    name         = string
-    replicas     = number
-    match_labels = map(string)
-    env          = map(string)
-    image_name   = string
-    limits = object({
-      cpu    = string
-      memory = string
-    })
-    requests = object({
-      cpu    = string
-      memory = string
-    })
-    health_check = object({
-      path                  = string
-      port                  = number
-      initial_delay_seconds = number
-      period_seconds        = number
-    })
-  }))
-  description = "map of k8 deployment objects"
+variable "sql_enabled" {
+  type        = bool
+  description = "enable sql deployment"
+  default     = false
+}
+
+variable "sql_instance_name" {
+  type        = string
+  description = "name of the sql instance"
+  default     = ""
+
+}
+
+variable "sql_server_audit_config" {
+  description = "SQL server audit config settings."
+  type        = map(string)
   default     = {}
 }
 
-variable "k8_namespaces" {
-  type = map(object({
-    labels      = map(string)
-    annotations = map(string)
-  }))
-  default     = {}
-  description = "map of namespace objects"
+
+variable "random_instance_name" {
+  type        = bool
+  description = "enable random instance name"
+  default     = false
+
+}
+
+variable "database_version" {
+  type        = string
+  description = "database version for ms sql"
+  default     = "SQLSERVER_2022_STANDARD"
+}
+
+variable "sql_deletion_protection" {
+  type        = bool
+  description = "enable delete protection"
+  default     = false
+}
+
+variable "sql_tier" {
+  type        = string
+  description = "tier for the sql instance"
+  default     = "db-custom-10-65536"
+}
+
+variable "sql_private_ip_alloc" {
+  type        = string
+  description = "private network address"
+  default     = ""
+}
+
+variable "sql_private_network_id" {
+  type        = string
+  description = "private network id"
+  default     = ""
+}
+
+variable "artifact_registry_name" {
+  type        = string
+  description = "name of the artifact registry"
+  default     = ""
 }
