@@ -24,7 +24,6 @@ variable "secret_name" {
 variable "github_token" {
   type        = string
   description = "path to the github token file"
-  default     = "./files/github_token.txt"
 
 }
 
