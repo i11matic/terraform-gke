@@ -35,3 +35,5 @@ tfplan
 
 
 cloud-build/files/github_token.txt
+
+**/.terraform.lock.hcl
