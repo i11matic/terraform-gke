@@ -174,3 +174,23 @@ variable "artifact_registry_name" {
   description = "name of the artifact registry"
   default     = ""
 }
+
+variable "kms_key_ring" {
+  type        = string
+  description = "name of the kms ring to create"
+}
+
+variable "kms_key_ring_encrypter_and_decrypter_iam_members" {
+  type        = list(string)
+  description = "list of iam members to grant key ring access"
+
+}
+
+variable "kms_keys" {
+  type = map(object({
+    rotation_period = string
+    members         = list(string)
+
+  }))
+  description = "map of kms key configuration"
+}

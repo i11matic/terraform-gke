@@ -21,6 +21,7 @@
 | <a name="module_artifact_registry"></a> [artifact\_registry](#module\_artifact\_registry) | GoogleCloudPlatform/artifact-registry/google | ~> 0.1 |
 | <a name="module_gcp-network"></a> [gcp-network](#module\_gcp-network) | terraform-google-modules/network/google | >= 7.5 |
 | <a name="module_gke"></a> [gke](#module\_gke) | terraform-google-modules/kubernetes-engine/google//modules/safer-cluster | ~> 30.0 |
+| <a name="module_kms"></a> [kms](#module\_kms) | ./modules/kms | n/a |
 | <a name="module_sql"></a> [sql](#module\_sql) | ./modules/sql | n/a |
 
 ## Resources
@@ -29,7 +30,10 @@
 |------|------|
 | [google_compute_router.router](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_router) | resource |
 | [google_compute_router_nat.nat](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_router_nat) | resource |
+| [google_kms_key_ring.key_ring](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_key_ring) | resource |
+| [google_kms_key_ring_iam_policy.key_ring_iam](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/kms_key_ring_iam_policy) | resource |
 | [google_pubsub_topic.updates](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/pubsub_topic) | resource |
+| [google_iam_policy.encrypter_and_decrypter](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/iam_policy) | data source |
 
 ## Inputs
 
@@ -50,6 +54,9 @@
 | <a name="input_gke_regional_deployment"></a> [gke\_regional\_deployment](#input\_gke\_regional\_deployment) | enable regional | `bool` | `true` | no |
 | <a name="input_gke_subnetwork"></a> [gke\_subnetwork](#input\_gke\_subnetwork) | Configuration for  gke subnetwork | <pre>object({<br>    name = string<br>    cidr = string<br>  })</pre> | n/a | yes |
 | <a name="input_gke_svc_range"></a> [gke\_svc\_range](#input\_gke\_svc\_range) | Configuration of the gke svc range | <pre>object({<br>    name = string<br>    cidr = string<br>  })</pre> | n/a | yes |
+| <a name="input_kms_key_ring"></a> [kms\_key\_ring](#input\_kms\_key\_ring) | name of the kms ring to create | `string` | n/a | yes |
+| <a name="input_kms_key_ring_encrypter_and_decrypter_iam_members"></a> [kms\_key\_ring\_encrypter\_and\_decrypter\_iam\_members](#input\_kms\_key\_ring\_encrypter\_and\_decrypter\_iam\_members) | list of iam members to grant key ring access | `list(string)` | n/a | yes |
+| <a name="input_kms_keys"></a> [kms\_keys](#input\_kms\_keys) | map of kms key configuration | <pre>map(object({<br>    rotation_period = string<br>    members         = list(string)<br><br>  }))</pre> | n/a | yes |
 | <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | kuberentes version | `string` | `"latest"` | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | The project ID to host the cluster in | `string` | n/a | yes |
 | <a name="input_random_instance_name"></a> [random\_instance\_name](#input\_random\_instance\_name) | enable random instance name | `bool` | `false` | no |
