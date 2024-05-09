@@ -48,3 +48,13 @@ resource "kubectl_manifest" "cloud_sql_proxy" {
   yaml_body  = each.value
   depends_on = [helm_release.cert_manager]
 }
+
+
+resource "helm_release" "external_secrets" {
+  name             = "external-secrets"
+  version          = "0.9.17 "
+  repository       = "https://charts.external-secrets.io"
+  create_namespace = true
+  namespace        = "external-secrets"
+  chart            = "external-secrets"
+}

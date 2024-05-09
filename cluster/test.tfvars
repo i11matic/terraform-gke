@@ -1,6 +1,6 @@
 project_id = "gke-test-420601"
 
-region = "northamerica-northeast1"
+region = "us-west1"
 
 router_name = "gke-router"
 
@@ -40,13 +40,13 @@ gke_node_pools = [
     min_count    = 1
     max_count    = 2
     machine_type = "n1-standard-2"
-    disk_size_gb = 30
+    disk_size_gb = 10
     disk_type    = "pd-standard"
     auto_upgrade = true
   }
 ]
 
-sql_enabled = true
+sql_enabled = false
 
 sql_instance_name = "test-sql"
 
@@ -55,3 +55,15 @@ random_instance_name = true
 sql_private_ip_alloc = "10.92.0.0"
 
 artifact_registry_name = "gke-test-reg"
+
+
+kms_key_ring = "test-key-ring"
+
+kms_key_ring_encrypter_and_decrypter_iam_members = ["user:magustin0329@gmail.com"]
+
+kms_keys = {
+  dotnet6 = {
+    rotation_period = "7776000s"
+    members         = ["user:magustin0329@gmail.com"]
+  }
+}
